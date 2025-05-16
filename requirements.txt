@@ -1,0 +1,10 @@
+numpy
+pandas
+streamlit
+st-files-connection
+gcsfs
+lightgbm
+google-cloud-storage
+Pillow
+
+
