@@ -349,8 +349,8 @@ image_no = Image.open(io.BytesIO(image_bytes1))
 
 st.write('Have you said happy birthday to Vollie?')
 if st.button("Yes"):
-    st.image(image_yes,caption="❤️18.03❤️", use_column_width=True)
+    st.image(image_yes,caption="❤️18.03❤️", use_container_width=True)
     
 if st.button("Not yet"):   
-    st.image(image_no,caption="Let's go party", use_column_width=True);
+    st.image(image_no,caption="Let's go party", use_container_width=True);
    
