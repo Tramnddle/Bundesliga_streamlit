@@ -247,6 +247,8 @@ historical_matches_2 = matches_rolling[(matches_rolling['team'] == home_team) & 
 historical_matches_1 = historical_matches_1[historical_matches_1['date'] < date]
 historical_matches_2 = historical_matches_2[historical_matches_2['date'] < date]
 
+st.write(historical_matches_1.head())
+
         # Select opponent's last match
 last_match = historical_matches_1.sort_values(by='date', ascending=False).iloc[0]
 
