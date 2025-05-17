@@ -301,7 +301,7 @@ import json
 from google.oauth2 import service_account
 # Initialize Google Cloud Storage client
 gcs_credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["connections.gcs"]
+    st.secrets["connections_gcs"]
 )
 
 client = storage.Client(credentials=gcs_credentials, project=gcs_credentials.project_id)
