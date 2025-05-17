@@ -231,7 +231,7 @@ matches_rolling['random_t'] = matches_rolling['total_t'].apply(generate_random_t
 matches_rolling['total_goal_rolling'].fillna(0, inplace=True)
 matches_rolling['random_total_goal'] = matches_rolling['total_goal_rolling'].apply(generate_random_t)
 
-st.write(matches_rolling.head())
+
  # Head 2 head performance  
 home_team = user_inputs_A
 away_team = user_inputs_B
@@ -297,9 +297,14 @@ match_BA = match_BA[['date','round', 'gf_rolling','ga_rolling','sh_rolling', 'sa
 match_BA = match_BA.set_index('date', inplace=False)
 
 from google.cloud import storage
-
+import json
+from google.oauth2 import service_account
 # Initialize Google Cloud Storage client
-client = storage.Client()
+gcs_credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["connections.gcs"]
+)
+
+client = storage.Client(credentials=gcs_credentials, project=gcs_credentials.project_id)
 
 # Define your Google Cloud Storage bucket name and model file path
 bucket_name = 'lgbm_model'
