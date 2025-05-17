@@ -13,8 +13,8 @@ import os
 import lightgbm as lgb
 
 
-secrets = st.secrets["connections.gcs"]
-secret_value = os.environ.get('connections.gcs')
+#secrets = st.secrets["connections.gcs"]
+#secret_value = os.environ.get('connections.gcs')
 
 # Create a GCS connection
 conn = st.connection('gcs', type=FilesConnection)
