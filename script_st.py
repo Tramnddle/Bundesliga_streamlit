@@ -11,6 +11,7 @@ from st_files_connection import FilesConnection
 import gcsfs
 import os
 import lightgbm as lgb
+import random
 
 
 #secrets = st.secrets["connections.gcs"]
@@ -218,9 +219,6 @@ matches_rolling_A = rolling_averages(group, cols_1, cols_2, new_cols_1, new_cols
 matches_rolling = df.groupby('team').apply(lambda x: rolling_averages(x, cols_1, cols_2, new_cols_1, new_cols_2))
 matches_rolling.index = matches_rolling.index.droplevel()
 
-import random
-import numpy as np
-
 def generate_random_t(x):
     lower_bound = max(0, x - 2)  # Ensure the lower bound is non-negative
     upper_bound = x + 4
@@ -233,7 +231,7 @@ matches_rolling['random_t'] = matches_rolling['total_t'].apply(generate_random_t
 matches_rolling['total_goal_rolling'].fillna(0, inplace=True)
 matches_rolling['random_total_goal'] = matches_rolling['total_goal_rolling'].apply(generate_random_t)
 
-
+st.write(matches_rolling.head())
  # Head 2 head performance  
 home_team = user_inputs_A
 away_team = user_inputs_B
@@ -246,8 +244,6 @@ historical_matches_2 = matches_rolling[(matches_rolling['team'] == home_team) & 
         # Exclude the current match by filtering based on the date
 historical_matches_1 = historical_matches_1[historical_matches_1['date'] < date]
 historical_matches_2 = historical_matches_2[historical_matches_2['date'] < date]
-
-st.write(historical_matches_1.head())
 
         # Select opponent's last match
 last_match = historical_matches_1.sort_values(by='date', ascending=False).iloc[0]
